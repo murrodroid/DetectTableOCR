@@ -1,0 +1,31 @@
+name: TableOCR
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+
+  # Core ML stack
+  - pytorch
+  - torchvision
+  - torchaudio
+  - timm
+  # For NVIDIA GPU builds, add:
+  - pytorch-cuda=12.1
+
+  # Document + image processing
+  - pillow
+  - numpy
+
+  # Transformers / Hugging Face
+  - transformers
+  - tokenizers
+  - huggingface_hub
+
+  # Just in case you need JSON/YAML helpers
+  - pyyaml
+
+  - pip:
+    - pymupdf>=1.24.0

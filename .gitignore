@@ -1,1 +1,3 @@
 ﻿*.pth
+*.pt
+.vscode
