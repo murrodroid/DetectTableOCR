@@ -18,6 +18,7 @@ dependencies:
   # Document + image processing
   - pillow
   - numpy
+  - scikit-image
 
   # Transformers / Hugging Face
   - transformers
