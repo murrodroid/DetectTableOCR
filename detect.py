@@ -48,7 +48,7 @@ def pdf_to_images(
 def visualize_table_detections(
     pdf_path: str,
     results: Dict[int, List[dict]],
-    out_dir: str = "visualizations",
+    out_dir: str = "detections",
     dpi: Optional[int] = None,  # pass the same dpi you used for detection; if None, we'll try to infer
     rect_thickness: int = 4,    # outline thickness in pixels (auto-scaled minimally)
 ) -> Dict[int, str]:
@@ -66,7 +66,7 @@ def visualize_table_detections(
     Returns:
         Dict mapping page_index -> saved image path.
     """
-    os.makedirs(out_dir, exist_ok=True)
+    os.makedirs(f"{pdf_path}_{out_dir}", exist_ok=True)
     saved = {}
 
     doc = pymupdf.open(pdf_path)
@@ -110,7 +110,7 @@ def visualize_table_detections(
                 x1, y1, x2, y2 = [float(v) for v in box]
                 draw.rectangle([x1, y1, x2, y2], outline=(255, 0, 0), width=auto_thick)
 
-            out_path = os.path.join(out_dir, f"page_{p+1:03d}.png")
+            out_path = os.path.join(f"{pdf_path}_{out_dir}", f"page_{p+1:03d}.png")
             img.save(out_path)
             saved[p] = out_path
 
@@ -187,9 +187,9 @@ def detect_tables(
     return results
 
 def main():
-    pdf_path = '1880.pdf'
+    pdf_path = 'doedsag1880-1884.pdf'
     dpi = 300
-    results = detect_tables(pdf_path=pdf_path,page_indices=None, dpi=dpi)
+    results = detect_tables(pdf_path=pdf_path,page_indices=[6,9,13,20,58], dpi=dpi, score_threshold=0.95)
     visualize_table_detections(pdf_path=pdf_path, results=results, dpi=dpi)
 
 
