@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 
+
 def preprocess_page(page: np.ndarray, thresh=None):
     gray = cv2.cvtColor(page, cv2.COLOR_BGR2GRAY) if len(page.shape) == 3 else page
 

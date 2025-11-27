@@ -1,3 +1,4 @@
-﻿*.pth
+*.pth
 *.pt
 .vscode
+point_set_reg/__pycache__
